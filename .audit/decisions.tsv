@@ -1,0 +1,9 @@
+ts	phase	decision	why	evidence	result
+2026-09-07T16:38:00Z	frame	treat Theorem 1.10 as novel relative to Sq and SqOmega	Sq certifies min(s+,s-) >= n-1 for connected graphs; SqOmega certifies the clique bound; neither file mentions P3-removal or Theorem 1.10	/tmp/novelty/Sq/Sq/Main.lean,/tmp/novelty/SqOmega/SqOmega/Main.lean	novelty open, not blocked
+2026-09-07T16:40:00Z	frame	formalize only Theorem 1.10 plus Lemma 3.1 and Lemma 4.1	the user forbids duplicating SUPERADD Theorem 1.6; Lemma 3.1 is a shared lemma, not that theorem	.audit/playbook.md	scope locked
+2026-09-07T16:40:30Z	frame	skip architect	the Palomar template and Zhang section 4 already fix the shape	figure-it-out skip rule	skipped
+2026-09-07T16:42:00Z	harness	copy PalomarTemplate pins (Lean v4.32.0) rather than invent a stack	smallest Palomar-submittable layout	lakefile.toml,lean-toolchain	scaffold written
+2026-09-07T16:45:00Z	toolchain	install Lean by curl because elan TLS failed	curl to GitHub works; elan rustls does not	lean --version = 4.32.0	VERIFIED
+2026-09-07T17:20:00Z	u7	keep Lemma 4.1 as 3x3 row-column mass, reduce A+M by middle-vertex sign flip	avoids a second copy of the polynomial argument	lake build P3Removal.Lemma41	VERIFIED
+2026-09-07T17:35:00Z	u8	prove Theorem 1.10 by Lemma 3.1 + restriction + Lemma 4.1	paper section 4; no superadditivity	lake build	VERIFIED
+2026-09-07T17:40:00Z	u9	record novelty against Sq/SqOmega and fill Palomar metadata	GitHub and local clone searches found no Theorem 1.10	NOVELTY.md,formalization.yaml,verify.sh --skip-build	VERIFIED

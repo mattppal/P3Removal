@@ -1,0 +1,124 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "P3-removal for square energies"
+  description: >-
+    Formalizes Zhang, Extremal values for the square energies of graphs,
+    arXiv:2409.15504v2, Theorem 1.10. An induced three-vertex path forces a
+    vertex whose deletion drops the negative square energy by more than 1,
+    and likewise for the positive square energy. The development follows the
+    paper's Lemma 3.1 variational bounds and the 3×3 estimate in Lemma 4.1.
+    Superadditivity (Theorem 1.6) is not formalized here.
+  authors:
+    - "Matt Palmer"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Matt Palmer"
+
+classification:
+  arxiv: ["math.CO"]
+  msc2020: ["05C50", "15A42"]
+
+sources:
+  - title: "Extremal values for the square energies of graphs"
+    authors:
+      - "Shengtong Zhang"
+    id: "arXiv:2409.15504v2"
+    type: "article"
+    location: "https://arxiv.org/abs/2409.15504"
+    relationship: "formalizes"
+    note: >-
+      Theorem 1.10 and the supporting Lemmas 3.1 and 4.1. The numerical
+      coincidence in Lemma 4.1 is proved by an algebraic identity rather than
+      by calculator inspection.
+    license: "unknown"
+    author_endorsement: "not-contacted"
+
+related_formalizations:
+  - id: "https://github.com/ShengtongZhang-alt/Sq"
+    relationship: "independent"
+    note: >-
+      Formalizes the connected-graph lower bound min(s⁺, s⁻) ≥ n−1 from the
+      same paper. It does not contain Theorem 1.10.
+  - id: "https://github.com/ShengtongZhang-alt/SqOmega"
+    relationship: "independent"
+    note: >-
+      Formalizes the clique bound √s±(G) ≤ (1 − 1/ω(G)) n from the same
+      paper. It does not contain Theorem 1.10.
+
+status:
+  scope: >-
+    Proved: Theorem 1.10 for both signs, Lemma 3.1, and Lemma 4.1, for finite
+    simple undirected graphs. Not formalized: Theorem 1.6 (superadditivity),
+    Corollaries 1.11 and 1.12, and the 1 + 1/16 quantitative refinement.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Quot.sound", "Classical.choice"]
+
+automation:
+  methods:
+    - method: "autonomous"
+      models: ["Cursor Grok 4.6"]
+      framework: "Cursor Cloud Agent"
+      tool_setup: >-
+        PalomarTemplate scaffold on Lean v4.32.0 and Mathlib, with lake build
+        after each module.
+      cost:
+        wall_time: "one autonomous session"
+        spend_usd: "not tracked"
+        hardware: "cloud VM"
+      prompting_notes: >-
+        Goal was a Palomar-submittable formalization of Theorem 1.10 only,
+        after a novelty check against ShengtongZhang-alt/Sq and SqOmega.
+  spend_usd: "not tracked"
+  notes: >-
+    Autonomous formalization from the paper statement and Palomar template.
+    The 3×3 numerical check is an algebraic identity, not a calculator call.
+
+fidelity:
+  divergences: >-
+    The paper inspects 16(1−t)⁴ > 6(1−4t²)(1−2t²) on [0, 1/2] numerically.
+    This formalization expands the difference as
+    (1−2t)²(10−24t−8t²)+4t² and estimates signs. The A+M half of Lemma 4.1
+    is reduced to A−M by conjugating the middle vertex by −1. An induced
+    P₃ is packaged as a structure with three named vertices rather than as
+    an abstract graph isomorphism. Vertex deletion uses the subtype
+    {x // x ≠ u}. None of these change the theorem.
+
+review:
+  status: "self-assessed"
+  reviewers:
+    - "none"
+  notes: >-
+    Statement surface matches the paper quote in Challenge.lean. Comparator
+    declarations are the two signed forms and their conjunction. No
+    independent mathematical review has been performed.
+
+alignment:
+  namespace: "P3Removal"
+  statements:
+    - source: "Zhang arXiv:2409.15504v2, Theorem 1.10, s⁻ form"
+      lean: "P3Removal.p3_removal_negative"
+      module: "Challenge.lean"
+      status: "proved"
+      note: >-
+        Exists u in the induced P₃ with s⁻(G) > s⁻(G\\{u}) + 1.
+    - source: "Zhang arXiv:2409.15504v2, Theorem 1.10, s⁺ form"
+      lean: "P3Removal.p3_removal_positive"
+      module: "Challenge.lean"
+      status: "proved"
+      note: >-
+        Exists u in the induced P₃ with s⁺(G) > s⁺(G\\{u}) + 1.
+    - source: "Zhang arXiv:2409.15504v2, Theorem 1.10"
+      lean: "P3Removal.p3_removal"
+      module: "Challenge.lean"
+      status: "proved"
+      note: >-
+        Conjunction of the two signed statements, matching the paper's
+        “the same holds if we replace s⁻ with s⁺”.
+
+acknowledgements: >-
+  Mathlib, PalomarTemplate, and Shengtong Zhang's paper. Related
+  formalizations of other theorems from the same paper live in
+  ShengtongZhang-alt/Sq and ShengtongZhang-alt/SqOmega.

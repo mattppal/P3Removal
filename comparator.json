@@ -1,0 +1,18 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "P3Removal.p3_removal_negative",
+    "P3Removal.p3_removal_positive",
+    "P3Removal.p3_removal"
+  ],
+  "definition_names": [
+    "P3Removal.adjacencyEigenvalues",
+    "P3Removal.positiveSquareEnergy",
+    "P3Removal.negativeSquareEnergy",
+    "P3Removal.deleteVertex",
+    "P3Removal.InducedP3"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "enable_nanoda": true
+}
