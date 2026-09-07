@@ -8,10 +8,12 @@ statement as its counterpart in `Challenge.lean` and uses only the
 permitted axioms.
 -/
 
+universe u
+
 namespace P3Removal
 
 theorem p3_removal_negative
-    {V : Type*} [Fintype V] [DecidableEq V]
+    {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (U : InducedP3 G) :
     ∃ u ∈ U.verts,
@@ -19,7 +21,7 @@ theorem p3_removal_negative
   zhang_theorem_1_10_negative U
 
 theorem p3_removal_positive
-    {V : Type*} [Fintype V] [DecidableEq V]
+    {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (U : InducedP3 G) :
     ∃ u ∈ U.verts,
@@ -27,7 +29,7 @@ theorem p3_removal_positive
   zhang_theorem_1_10_positive U
 
 theorem p3_removal
-    {V : Type*} [Fintype V] [DecidableEq V]
+    {V : Type u} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (U : InducedP3 G) :
     (∃ u ∈ U.verts,

@@ -20,8 +20,9 @@ see `NOVELTY.md`.
 
 ## Repository map
 
-- `Challenge.lean` is the statement surface. Each advertised theorem ends in
-  `sorry`.
+- `Challenge.lean` is the statement surface. It imports Mathlib only. Each
+  advertised theorem ends in `sorry`. The compared definitions live in this
+  file so Palomar's Challenge closure stays Mathlib-only.
 - `Solution.lean` proves the same declarations.
 - `P3Removal/` is the proof development: definitions, Lemma 3.1, the
   numerical coincidence, Lemma 4.1, and Theorem 1.10.

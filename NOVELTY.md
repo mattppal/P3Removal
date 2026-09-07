@@ -32,7 +32,9 @@ matches for the target theorem. The only `P3` / `s⁻` hits in `SqOmega` are
 the clique-bound docstring.
 
 GitHub code search for `InducedP3` and `p3_removal` in Lean returned no
-hits in those repositories.
+hits in those repositories. Re-checked the live READMEs: `Sq` advertises
+`card_sub_one_le_min_squareEnergy`; `SqOmega` advertises
+`sqrt_squareEnergies_le_cliqueNum`. Neither states Theorem 1.10.
 
 ## Out of scope here
 
