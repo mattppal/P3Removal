@@ -29,6 +29,8 @@ see `NOVELTY.md`.
 - `comparator.json` lists the declarations Comparator must match.
 - `formalization.yaml` is the Palomar metadata.
 - `NOVELTY.md` records the check against `Sq` and `SqOmega`.
+- `VERIFICATION.md` is the 2026-09-07 gate log.
+- `SUBMIT.md` is the Palomar form checklist.
 
 ## Build
 
